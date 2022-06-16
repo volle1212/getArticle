@@ -14,8 +14,12 @@ print(urls)
 OUTPUT:
 
 A title
+
 Antother title
+
 natianl.com/atitle
+
 natianl.com/antohetitle
+
 
 thx for using this :}
