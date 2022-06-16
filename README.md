@@ -11,9 +11,9 @@ titles, urls = getArticles(amount=2)
 print(titles)
 print(urls)
 
->>>A title
->>>Antother title
->>>natianl.com/atitle
->>>natianl.com/antohetitle
+>>A title
+>>Antother title
+>>natianl.com/atitle
+>>natianl.com/antohetitle
 
 thx for using this :}
