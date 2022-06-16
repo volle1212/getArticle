@@ -7,6 +7,7 @@ url = "https://www.nationalgeographic.com/science/"
 def getArticles(amount):
     titles = []
     urls = []
+    paragraphs = []
     global url
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'lxml')
@@ -47,7 +48,34 @@ def getArticles(amount):
         new_url = new_url.replace("://", "")
         urls.append(new_url)
 
+        url = f"https://{new_url}"
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, 'lxml')
+
+        table = soup.find('section', attrs={'class': 'Article__Content'})
+
+        result = []
+        for char in str(table).replace('<section class="Article__Content Article__Content--endbug"><div><p>', "").replace("</p>", "§").replace("<i>", "").replace("</i>", "").replace("<a>", "").replace("</a>", ""):
+            if char == "§":
+                break
+            else:
+                result.append(char)
+
+        new_paragraph = ""
+        for char in result:
+            new_paragraph += char
+        paragraphs.append(new_paragraph)
+
         if i == int(amount):
             break
+        else:
+            i += 1
 
-    return titles, urls
+    return titles, urls, paragraphs
+
+
+titles, urls, paragraphs = getArticles(2)
+
+print(titles)
+print(urls)
+print(paragraphs)
